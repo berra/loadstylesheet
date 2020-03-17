@@ -24,9 +24,6 @@ wrapper.style.top = "0";
 wrapper.style.right = "0";
 document.body.appendChild(wrapper);
 
-function addListener(link) {
-	link.addEventListener("click", clickHandler);
-}
 
 function createLink(item) {
   const a = document.createElement('a');
@@ -36,19 +33,19 @@ function createLink(item) {
   a.style.display = "inline-block";
   a.style.padding = "3px";
   a.style.fontSize = "12px";
-  a.addEventListener("click", loadCSS);
+  a.addEventListener("click", clickHandler);
   if(w) w.appendChild(a);
   else document.body.appendChild(a);
 }
 
 	
 const stylesheets = [
-	{ name: "umo", path: "https://www.umo.se/build/umo/stylesheets/app.css" }, 
-	{ name: "1177", path: "https://www.1177.se/build/1177/stylesheets/app.css" }
+	{ name: "1177", path: "https://www.1177.se/build/1177/stylesheets/app.css" },
+  { name: "umo", path: "https://www.umo.se/build/umo/stylesheets/app.css" }, 
 ];
 	
 stylesheets.forEach(createLink);
 
 loadCSS(stylesheets[0].path);
-	
+
 });
