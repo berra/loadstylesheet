@@ -1,10 +1,6 @@
 window.addEventListener('load', (event) => {
 
-
-function loadCSS(e) {
-  e.preventDefault();
-  const el = document.getElementById('dynamic-css');
-  if(el) el.remove();
+function loadCSS() {
   const style   = document.createElement('link');
   const path = e.target.href;
   style.rel = 'stylesheet';
@@ -12,6 +8,13 @@ function loadCSS(e) {
   style.id = 'dynamic-css';
   style.href = path;
   document.getElementsByTagName('head')[0].appendChild(style);
+}
+
+function clickHandler(e) {
+  e.preventDefault();
+  const el = document.getElementById('dynamic-css');
+  if(el) el.remove();
+  loadCSS(e.target.href);
 }
 
 	
@@ -23,14 +26,12 @@ wrapper.style.right = "0";
 document.body.appendChild(wrapper);
 
 function addListener(link) {
-	link.addEventListener("click", loadCSS);
+	link.addEventListener("click", clickHandler);
 }
 
 function createLink(item) {
   const a = document.createElement('a');
-  const w = document.getElementById("cssLinkWrapper");
-  console.log(w);
-	
+  const w = document.getElementById("cssLinkWrapper");	
   a.href = item.path;
   a.innerHTML = item.name;
   a.style.display = "inline-block";
@@ -49,5 +50,6 @@ const stylesheets = [
 	
 stylesheets.forEach(createLink);
 
-
+loadCSS(stylesheets[0].path);
+	
 });
