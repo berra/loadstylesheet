@@ -1,8 +1,7 @@
 window.addEventListener('load', (event) => {
 
-function loadCSS() {
+function loadCSS(path) {
   const style   = document.createElement('link');
-  const path = e.target.href;
   style.rel = 'stylesheet';
   style.type = 'text/css';
   style.id = 'dynamic-css';
