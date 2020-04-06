@@ -2,8 +2,16 @@ window.addEventListener('load', (event) => {
 
 
 const stylesheets = [
-  { name: "1177", path: "https://www.1177.se/build/1177/stylesheets/app.css" },
-  { name: "umo", path: "https://www.umo.se/build/umo/stylesheets/app.css" }, 
+  { 
+	  name: "1177", 
+	  path: "https://www.1177.se/build/1177/stylesheets/app.css", 
+	  preload: "https://www.1177.se/build/1177/stylesheets/preload.css" 
+  },
+  { 
+	  name: "umo", 
+	  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
+	  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
+  }, 
 ];
 
 function getCurrentSite() {
@@ -18,26 +26,32 @@ function setCurrentSite(site) {
 
 const CURRENT = getCurrentSite();
 
-function loadCSS(path) {
+function loadCSS(path, id = "dynamic-css") {
+  if(!path) return;
   const style   = document.createElement('link');
   style.rel = 'stylesheet';
   style.type = 'text/css';
-  style.id = 'dynamic-css';
+  style.id = id;
   style.href = path;
   document.getElementsByTagName('head')[0].appendChild(style);
 }
 
 function clickHandler(e) {
   e.preventDefault();
+  const name = e.target.id;
   document.getElementById('cssLinkWrapper').classList.remove('heavy');
   const links = document.querySelectorAll('.jsfiddle_css_theme');
   links.forEach(el => el.classList.remove('active'));
   
-  const el = document.getElementById('dynamic-css');
-  if(el) el.remove();
+  const style = document.getElementById('dynamic-css');
+  const preload = document.getElementById('preload-css');
+  if(style) style.remove();
+  if(preload) preload.remove();
+	
   e.target.classList.add('active');
   setCurrentSite(e.target.innerText);
   loadCSS(e.target.href);
+  loadCSS(getPreloadPathFromName(name), "preload-css");
 }
 
 	
@@ -85,7 +99,7 @@ css.innerHTML = `
     border-radius: 20px;
     text-align: center;
   }
-	.jsfiddle_css_theme {
+  .jsfiddle_css_theme {
     color: white;
     display: inline-block;
     padding-left: 10px;
@@ -104,7 +118,7 @@ css.innerHTML = `
 document.body.appendChild(css);
 
 function createLink(item) {
-	const current = getCurrentSite();
+  const current = getCurrentSite();
   const a = document.createElement('a');
   const w = document.getElementById("cssLinkWrapper");	
   a.href = item.path;
@@ -120,10 +134,17 @@ function createLink(item) {
 }
 
 	
-
-function getPathFromName(name) {
-  return stylesheets.find(i => i.name === name).path;
+function getItemFromName(name) {
+  return stylesheets.find(i => i.name === name);
 }
+	
+function getPathFromName(name) {
+  return getItemFromName(name).path;
+}
+	
+function getPreloadPathFromName(name) {
+  return getItemFromName(name).preload;
+}	
 	
 stylesheets.forEach(createLink);
 
