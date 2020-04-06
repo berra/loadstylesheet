@@ -1,6 +1,5 @@
 window.addEventListener('load', (event) => {
 
-
 const stylesheets = [
   { 
 	  name: "1177", 
@@ -50,18 +49,22 @@ function clickHandler(e) {
 	
   e.target.classList.add('active');
   setCurrentSite(e.target.innerText);
-  loadCSS(e.target.href);
+
   loadCSS(getPreloadPathFromName(name), "preload-css");
+  loadCSS(e.target.href);
 }
 
 	
 const wrapper = document.createElement("div");
 wrapper.id = "cssLinkWrapper";
+	
 if(!CURRENT) {
   wrapper.classList.add('heavy');
 } else {
+  loadCSS(getPreloadPathFromName(CURRENT), "preload-css");
   loadCSS(getPathFromName(CURRENT));
 }
+	
 document.body.appendChild(wrapper);
 
 // add some css! 
