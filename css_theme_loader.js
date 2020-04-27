@@ -6,11 +6,11 @@ const stylesheets = [
 	  path: "https://www.1177.se/build/1177/stylesheets/app.css", 
 	  preload: "https://www.1177.se/build/1177/stylesheets/preload.css" 
   },
-  { 
-	  name: "umo", 
-	  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
-	  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
-  }, 
+//{ 
+//	  name: "umo", 
+//	  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
+//	  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
+//},
 ];
 
 function getCurrentSite() {
@@ -57,8 +57,12 @@ function clickHandler(e) {
 	
 const wrapper = document.createElement("div");
 wrapper.id = "cssLinkWrapper";
-	
-if(!CURRENT) {
+
+if(stylesheets.length === 1) {
+  loadCSS(getPreloadPathFromName(stylesheets[0].name), "preload-css");
+  loadCSS(getPathFromName(stylesheets[0].name));
+  wrapper.style.display = "none";
+} else if(!CURRENT) {
   wrapper.classList.add('heavy');
 } else {
   loadCSS(getPreloadPathFromName(CURRENT), "preload-css");
