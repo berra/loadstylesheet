@@ -1,17 +1,18 @@
+window.stylesheets = window.stylesheets || [];
+
 window.addEventListener('load', (event) => {
 
-const stylesheets = [
-  { 
-	  name: "1177", 
-	  path: "https://www.1177.se/build/1177/stylesheets/app.css", 
-	  preload: "https://www.1177.se/build/1177/stylesheets/preload.css" 
-  },
-//{ 
-//	  name: "umo", 
-//	  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
-//	  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
+window.stylesheets.push({ 
+  name: "1177", 
+  path: "https://www.1177.se/build/1177/stylesheets/app.css", 
+  preload: "https://www.1177.se/build/1177/stylesheets/preload.css" 
+});
+	
+//window.stylesheets.push({ 
+//  name: "umo", 
+//  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
+//  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
 //},
-];
 
 function getCurrentSite() {
   if(!window.localStorage) return false;  
@@ -58,7 +59,7 @@ function clickHandler(e) {
 const wrapper = document.createElement("div");
 wrapper.id = "cssLinkWrapper";
 
-if(stylesheets.length === 1) {
+if(window.stylesheets.length === 1) {
   loadCSS(getPreloadPathFromName(stylesheets[0].name), "preload-css");
   loadCSS(getPathFromName(stylesheets[0].name));
   wrapper.style.display = "none";
@@ -134,7 +135,7 @@ function createLink(item) {
   a.innerHTML = item.name;
   a.addEventListener("click", clickHandler);
   if(item.name === current) {
-  	a.classList.add('active');
+    a.classList.add('active');
   }
   if(w) w.appendChild(a);
   else document.body.appendChild(a);
@@ -142,7 +143,7 @@ function createLink(item) {
 
 	
 function getItemFromName(name) {
-  return stylesheets.find(i => i.name === name);
+  return window.stylesheets.find(i => i.name === name);
 }
 	
 function getPathFromName(name) {
@@ -153,6 +154,6 @@ function getPreloadPathFromName(name) {
   return getItemFromName(name).preload;
 }	
 	
-stylesheets.forEach(createLink);
+window.stylesheets.forEach(createLink);
 
 });
