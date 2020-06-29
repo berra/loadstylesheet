@@ -15,13 +15,22 @@ window.stylesheets.push({
 //},
 
 function getCurrentSite() {
-  if(!window.localStorage) return false;  
-  return window.localStorage.getItem('inera_jsfiddle_current_site');
+// We can get access denied on window.localStorage for this document. 
+  try {
+    if(!window.localStorage) return false;  
+    return window.localStorage.getItem('inera_jsfiddle_current_site');
+  } catch () {
+    return false;	  
+  }
 }
 
 function setCurrentSite(site) {
-  if(!window.localStorage) return false;  
-  window.localStorage.setItem('inera_jsfiddle_current_site', site);
+  try {
+    if(!window.localStorage) return false;  
+    window.localStorage.setItem('inera_jsfiddle_current_site', site);
+  } catch (e) {
+   return false;
+  }
 }
 
 const CURRENT = getCurrentSite();
