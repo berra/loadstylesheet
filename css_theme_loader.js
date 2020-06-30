@@ -12,7 +12,7 @@ window.stylesheets.push({
 //  name: "umo", 
 //  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
 //  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
-//},
+//});
 
 function getCurrentSite() {
 // We can get access denied on window.localStorage for this document. 
