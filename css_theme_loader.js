@@ -4,14 +4,14 @@ window.addEventListener('load', (event) => {
 
 window.stylesheets.push({ 
   name: "1177", 
-  path: "https://www.1177.se/build/1177/stylesheets/app.css", 
-  preload: "https://www.1177.se/build/1177/stylesheets/preload.css" 
+  path: "https://www.1177.se/build/1177/static/stylesheets/app.css", 
+  preload: "https://www.1177.se/build/1177/static/stylesheets/preload.css" 
 });
-	
+
 //window.stylesheets.push({ 
 //  name: "umo", 
-//  path: "https://www.umo.se/build/umo/stylesheets/app.css", 
-//  preload: "https://www.umo.se/build/umo/stylesheets/preload.css" 
+//  path: "https://www.umo.se/build/umo/static/stylesheets/app.css", 
+//  preload: "https://www.umo.se/build/umo/static/stylesheets/preload.css" 
 //});
 
 function getCurrentSite() {
