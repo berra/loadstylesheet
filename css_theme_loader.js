@@ -1,18 +1,31 @@
+const cssList = {
+  "inera": { 
+    name: "inera", 
+    path: "https://www.inera.se/build/inera/static/stylesheets/app.css", 
+    preload: "https://www.inera.se/build/inera/static/stylesheets/preload.css" 
+  },
+  "1177": {
+    name: "1177", 
+    path: "https://www.1177.se/build/1177/static/stylesheets/app.css", 
+    preload: "https://www.1177.se/build/1177/static/stylesheets/preload.css" 
+  },
+  "umo": { 
+    name: "umo", 
+    path: "https://www.umo.se/build/umo/static/stylesheets/app.css", 
+    preload: "https://www.umo.se/build/umo/static/stylesheets/preload.css" 
+  }
+}
+
+
 window.stylesheets = window.stylesheets || [];
 
 window.addEventListener('load', (event) => {
 
-window.stylesheets.push({ 
-  name: "1177", 
-  path: "https://www.1177.se/build/1177/static/stylesheets/app.css", 
-  preload: "https://www.1177.se/build/1177/static/stylesheets/preload.css" 
-});
-
-//window.stylesheets.push({ 
-//  name: "umo", 
-//  path: "https://www.umo.se/build/umo/static/stylesheets/app.css", 
-//  preload: "https://www.umo.se/build/umo/static/stylesheets/preload.css" 
-//});
+if(cssList[window.useStylesheet]) {
+  window.stylesheets.push(cssList[window.useStylesheet]);
+} else {
+  window.stylesheets.push(cssList["1177"]);
+}
 
 function getCurrentSite() {
 // We can get access denied on window.localStorage for this document. 
