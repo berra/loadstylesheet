@@ -1,3 +1,3 @@
-används för inkludering av gemensamma filer på jsfiddle. jsdelivr.net
+Detta repo är numera inkluderat i: 
 
-exempelvis: https://cdn.jsdelivr.net/gh/berra/loadstylesheet@master/fontello/css/_fontello.css
+https://bitbucket.org/ineraservices/inera-core-css/src/master/
